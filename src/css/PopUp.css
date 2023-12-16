@@ -1,0 +1,31 @@
+.pop-up-container{
+    position: fixed;
+    width: 90%;
+    height: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-outline);
+    border-radius: var(--border-radius-small);
+    z-index: 20;
+}
+
+.pop-up-container .text-box:focus{
+    outline: 2px solid var(--color-primary);
+}
+
+.qr-container{
+    width: 245px;
+    height: 245px;
+    border: 1px solid var(--color-outline);
+    border-radius: var(--border-radius-small);
+    overflow: hidden;
+    margin: 10px auto;
+}
+
+video {
+    width: 245px;
+    object-fit: cover;
+    height: 245px;
+}

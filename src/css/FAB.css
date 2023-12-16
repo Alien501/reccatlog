@@ -1,0 +1,28 @@
+.fab-container {
+    position: fixed;
+    height: 60px;
+    width: 60px;
+    right: 15px;
+    bottom: 23px;
+    background-color: var(--color-secondary);
+    color: var(--color-on-secondary);
+    border-radius: var(--border-radius-big);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.fab-container svg{
+    height: 35px;
+    width: 35px;
+}
+
+.fab-container:hover {
+    cursor: pointer;
+    scale: 0.9;
+}
+
+.fab-container:hover  svg, .fab-container:active svg {
+    transform: rotate(225deg);
+}

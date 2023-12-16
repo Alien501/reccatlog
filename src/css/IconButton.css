@@ -1,0 +1,23 @@
+.icon-btn{
+    height: 50px;
+    width: 72px;
+    border-style: none;
+    border-radius: var(--border-radius-small);
+    background-color: var(--color-secondary);
+    color: var(--color-on-secondary);
+}
+
+.btn-icon{
+    width: 30px;
+    height: 30px;
+}
+
+.icon-btn:hover {
+    background-color: var(--color-tertiary);
+    color: var(--color-on-teriary);
+    cursor: pointer;
+}
+
+.icon-btn:active {
+    scale: 0.8;
+}

@@ -1,0 +1,30 @@
+.icon-text-btn{
+    border: none;
+    background-color: var(--color-secondary);
+    color: var(--color-on-secondary);
+    display: block;
+    margin: 15px auto;
+    width: 85px;
+    height: 42px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0px 10px;
+    border-radius: var(--border-radius-small);
+    outline: 2px solid transparent;
+}
+
+.icon-text-btn svg{
+    width: 28px;
+    height: 28px;
+}
+
+.icon-text-btn:hover {
+    outline-color: var(--color-tertiary);
+    cursor: pointer;
+}
+
+.icon-text-btn:active {
+    scale: 0.9;
+}

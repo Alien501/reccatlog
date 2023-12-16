@@ -1,0 +1,28 @@
+:root {
+  --color-bg: rgb(26, 28, 25);
+  --color-on-bg: rgb(226, 227, 221);
+  --color-outline: rgb(139, 147, 137);
+  --color-primary: rgb(126, 218, 139);
+  --color-on-primary: rgb(0, 57, 19);
+  --color-secondary: rgb(79, 216, 235);
+  --color-on-secondary: rgb(0, 54, 61);
+  --color-tertiary: rgb(161, 206, 214);
+  --color-on-tertiary: rgb(0, 54, 61);
+  --color-p-cont: rgb(33, 81, 0);
+  --color-on-p-cont: rgb(174, 246, 129);
+  --border-radius-small: 5px;
+  --border-radius-big: 10px;
+  --padding: 5px;
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  transition: 0.3s;
+}
+
+body {
+  background-color: #1e1e1e;
+}

@@ -1,0 +1,27 @@
+.text-box{
+    display: block;
+    height: 50px;
+}
+
+.text-box{
+    width: 95%;
+    background-color: #1e1e1e;
+    border-radius: var(--border-radius-small);
+    border-style: none;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 10px;
+    color: #fff;
+    outline: 2px solid var(--color-outline);
+}
+
+.text-box::placeholder {
+    font-size: 12px;
+    font-weight: 100;
+    letter-spacing: 1.2px;
+    color: var(--color-on-bg);
+}
+
+.text-box:focus{
+    /* outline: 2px solid var(--color-primary); */
+}
