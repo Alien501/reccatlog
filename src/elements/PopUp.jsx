@@ -50,7 +50,7 @@ export default function PopUp() {
                     style={ps}
                     onError={handleQrError}
                     onScan={handleScan}
-                    facingMode={'rear'}
+                    facingmode='rear'
                 />
             </div>}
             {qrStatus.isFound && qrStatus.url}
