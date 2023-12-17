@@ -22,6 +22,8 @@
     color: var(--color-on-bg);
 }
 
-.text-box:focus{
-    /* outline: 2px solid var(--color-primary); */
+
+.text-box:disabled {
+    outline-color: red !important;
+
 }

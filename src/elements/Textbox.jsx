@@ -2,8 +2,9 @@ import React from "react";
 
 import '../css/Textbox.css'
 
-export default function Textbox({placeholder}) {
+export default function Textbox({placeholder, status}) {
+    console.log(status);
     return(
-        <input type="text" className="text-box" placeholder={placeholder}/>
+        {...!status? <input type="text" className="text-box" placeholder={placeholder} disabled/>: <input type="text" className="text-box" placeholder={placeholder} />}
     )
 }
