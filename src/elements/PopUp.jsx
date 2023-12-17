@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import QrReader from 'react-qr-scanner'
+import React, { useEffect, useState } from "react";
+import { Html5QrcodeScanner } from 'html5-qrcode'
 
 
 import Textbox from "./Textbox";
@@ -12,10 +12,36 @@ export default function PopUp() {
         isFound: false
     })
 
-    const ps = {
-        height: 245,
-        width: 245
-    }
+    useEffect(() => {
+        const scanner = new Html5QrcodeScanner('reader', {
+            qrbox: {
+                width: 245,
+                height: 245
+            },
+            fps: 5,
+        })
+    
+        scanner.render(success, error);
+    
+        function success(result) {
+            scanner.clear()
+            setQrStatus(prev => {
+                let newUrl = result;
+    
+                return {
+                    ...prev,
+                    url: newUrl,
+                    isFound: true
+                }
+            })
+            console.log(qrStatus);
+        }
+    
+        function error(error) {
+            // console.error(error);
+        }
+    }, [])
+
 
     function handleQrError() {
         setQrStatus(prev => {
@@ -45,13 +71,7 @@ export default function PopUp() {
     return(
         <div className="pop-up-container">
             {!qrStatus.isFound && <div className="qr-container">
-                <QrReader
-                    delay={0}
-                    style={ps}
-                    onError={handleQrError}
-                    onScan={handleScan}
-                    facingmode='rear'
-                />
+                <div id="reader"></div>
             </div>}
             {qrStatus.isFound && qrStatus.url}
             <Textbox
