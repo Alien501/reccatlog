@@ -7,7 +7,7 @@ import '../css/PopUp.css'
 import IconTextButton from "./IconTextButton";
 import IconButton from "./IconButton";
 
-export default function PopUp({onCloseClick}) {
+export default function PopUp({onCloseClick, onChange, textValue}) {
     const [qrStatus, setQrStatus] = useState({
         url: '',
         isError: false,
@@ -29,14 +29,12 @@ export default function PopUp({onCloseClick}) {
             scanner.clear()
             setQrStatus(prev => {
                 let newUrl = result;
-                console.log(newUrl);
                 return {
                     ...prev,
                     url: newUrl,
                     isFound: true
                 }
             })
-            console.log(qrStatus);
         }
     
         function error(error) {
@@ -55,11 +53,17 @@ export default function PopUp({onCloseClick}) {
             <div className="roll-container">220701317</div>
             <Textbox
                 placeholder={'Title'}
-                status={qrStatus.isFound}
+                status={!qrStatus.isFound}
+                name={'title'}
+                onTextEnter={onChange}
+                textBoxContent={textValue.url}
             />
             <Textbox
                 placeholder={'Google Drive Link'}
-                status={qrStatus.isFound}
+                status={!qrStatus.isFound}
+                name={'link'}
+                onTextEnter={onChange}
+                textBoxContent={textValue.link}
             />
 
             <div className="drop-down-container">

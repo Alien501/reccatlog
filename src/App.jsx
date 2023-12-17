@@ -15,10 +15,30 @@ function App() {
   const [isSearchActive, setIsSearchActive] = useState(false)
   const [isFabClicked, setIsFabClicked] = useState(false)
 
+  const [searchBoxContent, setSearchBoxContent] = useState('')
+  const [newContentText, setNewContentText] = useState({
+    rollno: '012345',
+    title: '',
+    link: ''
+  })
+
+  function onPopChange(event) {
+    setNewContentText(prev => {
+      return {
+        ...prev,
+        [event.target.name]: event.target.value 
+      }
+    })
+  }
+
+  function onTextEnter(event){
+      setSearchBoxContent(prev => event.target.value);
+  }
+
   function fabClicked() {
-    console.log(isFabClicked);
     setIsFabClicked(prev => !prev)
   }
+
 
   return (
     <>
@@ -27,6 +47,10 @@ function App() {
       <div className={`search-top ${isSearchActive? 'active':''}`} onFocus={() => setIsSearchActive(true)} onBlur={() => setIsSearchActive(false)}>
         <Textbox 
           placeholder={'Search Something...'}
+          status={true}
+          onTextEnter={onTextEnter}
+          name={'searchq'}
+          textBoxContent={searchBoxContent}
         />
         <IconButton 
           icon={<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search btn-icon" viewBox="0 0 16 16">
@@ -55,7 +79,12 @@ function App() {
         onClick={fabClicked}
       />
       {isFabClicked && <Overlay />}
-      {isFabClicked && <PopUp onCloseClick={fabClicked}/>}
+      {isFabClicked && 
+        <PopUp onCloseClick={fabClicked}
+          onChange={onPopChange}
+          textValue={newContentText}
+        />   
+      }
     </>
   )
 }
