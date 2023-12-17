@@ -7,7 +7,7 @@ import '../css/PopUp.css'
 import IconTextButton from "./IconTextButton";
 import IconButton from "./IconButton";
 
-export default function PopUp({onCloseClick, onChange, textValue}) {
+export default function PopUp({onCloseClick, onChange, textValue, deptList, yearList, semList, typeList, onDropdownChange}) {
     const [qrStatus, setQrStatus] = useState({
         url: '',
         isError: false,
@@ -53,24 +53,24 @@ export default function PopUp({onCloseClick, onChange, textValue}) {
             <div className="roll-container">220701317</div>
             <Textbox
                 placeholder={'Title'}
-                status={!qrStatus.isFound}
+                status={qrStatus.isFound}
                 name={'title'}
                 onTextEnter={onChange}
                 textBoxContent={textValue.url}
             />
             <Textbox
                 placeholder={'Google Drive Link'}
-                status={!qrStatus.isFound}
+                status={qrStatus.isFound}
                 name={'link'}
                 onTextEnter={onChange}
                 textBoxContent={textValue.link}
             />
 
             <div className="drop-down-container">
-                <DropDown />
-                <DropDown />
-                <DropDown />
-                <DropDown />
+                <DropDown onOptionChange={onDropdownChange} optionList={deptList} name={'dept'}/>
+                <DropDown onOptionChange={onDropdownChange} optionList={yearList} name={'year'}/>
+                <DropDown onOptionChange={onDropdownChange} optionList={semList} name={'sem'}/>
+                <DropDown onOptionChange={onDropdownChange} optionList={typeList} name={'type'}/>
             </div>
 
             <IconTextButton 

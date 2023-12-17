@@ -72,7 +72,7 @@ video {
     padding: 5px 10px;
     text-decoration: none !important;
     margin: 20px auto;
-    display: block;
+    display: none !important;
 }
 
 #html5-qrcode-anchor-scan-type-change:hover {

@@ -2,13 +2,12 @@ import React from "react";
 
 import '../css/DropDown.css'
 
-export default function DropDown(){
+export default function DropDown({optionList, name, onOptionChange}){
+    const optionElements = optionList.map((ele, key) => <option key={key} value={ele}>{ele.toUpperCase()}</option>)
+
     return(
-        <select name="something" id="select-ele">
-            <option value="def" selected>Dept</option>
-            <option value="cs">CSE</option>
-            <option value="it">IT</option>
-            <option value="csd">CSD</option>
+        <select name={name} id="select-ele" onChange={(e) => onOptionChange(e)}>
+            {optionElements}
         </select>
     )
 }
