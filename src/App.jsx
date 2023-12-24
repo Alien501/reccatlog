@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import './App.css'
 import Header from './elements/Header'
@@ -11,12 +11,15 @@ import FAB from './elements/FAB'
 import Overlay from './elements/Overlay'
 import PopUp from './elements/PopUp'
 
+import {getdata, getFilter} from './db/db'
+
 function App() {
+  const [rollNo, setRollNo] = useState('220701317')
   const [isSearchActive, setIsSearchActive] = useState(false)
   const [isFabClicked, setIsFabClicked] = useState(false)
   const [searchBoxContent, setSearchBoxContent] = useState('')
   const [newContentText, setNewContentText] = useState({
-    rollno: '012345',
+    rollno: rollNo,
     title: '',
     link: ''
   })
@@ -28,6 +31,7 @@ function App() {
       type: null,
     }
   )
+  const [cards, setCards] = useState(null)
 
   const deptList = ['dept', 'aero', 'aids', 'aiml', 'auto', 'bme', 'bt', 'ce', 'civil', 'csbs', 'csd', 'cse', 'cyber', 'ds', 'eee', 'ece', 'ft', 'it', 'mech', 'mct', 'rna'
   ]
@@ -50,6 +54,15 @@ function App() {
 
   function fabClicked() {
     setIsFabClicked(prev => !prev)
+    setSearchByFilter(prev => {
+      return {
+      dept: null,
+      year: null,
+      sem: null,
+      type: null,
+      }
+    }
+    )
   }
 
   function onDropdownChange(event){
@@ -61,13 +74,38 @@ function App() {
     })
   }
 
-  function onSearchClicked() {
-    console.log(searchBoxContent);
+  function modifyCard(response){
+      setCards(
+        (prev) => {
+          const newCard = response.map((card) => <DisplayCard cardTitle={card.title} cardDept={card.dept} cardLink={card.link} cardType={card.type} cardYear={card.year} cardUploaderName={card.rollno}/>)
+          // console.log(typeof(newCard));
+          return newCard
+        }
+      )
+
   }
 
-  function onFilterClicked() {
-    console.log(searchByFilter);
+  async function onSearchClicked() {
+    if(searchBoxContent.length == 0){
+      alert('Enter text!')
+    }else{
+      const response = await getdata(searchBoxContent)
+      modifyCard(response)
+    }
   }
+
+  async function onFilterClicked() {
+    const response = await getFilter(searchByFilter)
+    if(response.stat) {
+      modifyCard(response.data)
+    }else {
+      alert('No option selected!')
+    }
+  }
+
+  // useEffect(() => {
+  //   // run()
+  // }, [])
 
   return (
     <>
@@ -101,7 +139,8 @@ function App() {
       />
       <hr />
 
-      <DisplayCard />
+      {cards && cards}
+
       <FAB 
         onClick={fabClicked}
       />
@@ -115,6 +154,8 @@ function App() {
           semList={semList}
           typeList={typeList}
           onDropdownChange={onDropdownChange}
+          rollNo={rollNo}
+          dp={searchByFilter}
         />   
       }
     </>

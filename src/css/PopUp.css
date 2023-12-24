@@ -92,6 +92,14 @@ video {
     margin: 15px auto;
 }
 
+.pop-up-container .warn {
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 5px;
+    color: red;
+}
+
 /* .pop-up-container .text-box:disabled {
     outline-color:red;
 } */
